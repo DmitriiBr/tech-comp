@@ -12,6 +12,7 @@
     "dependencies": {
         "@emotion/react": "^11.14.0",
         "@emotion/styled": "^11.14.0",
+        "@hookform/resolvers": "^5.1.1",
         "@mui/material": "^7.1.2",
         "@nanostores/query": "^0.3.4",
         "@nanostores/react": "^1.0.0",
@@ -19,13 +20,19 @@
         "@reatom/framework": "^3.4.64",
         "@reatom/npm-react": "^3.10.6",
         "@reduxjs/toolkit": "^2.8.2",
+        "@tanstack/react-form": "^1.12.4",
         "@tanstack/react-query": "^5.81.2",
         "axios": "^1.10.0",
+        "final-form-arrays": "^4.0.0",
         "nanostores": "^1.0.1",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
+        "react-final-form": "^7.0.0",
+        "react-final-form-arrays": "^4.0.0",
+        "react-hook-form": "^7.59.0",
         "react-redux": "^9.2.0",
-        "swr": "^2.3.3"
+        "swr": "^2.3.3",
+        "zod": "^3.25.67"
     },
     "devDependencies": {
         "@eslint/js": "^9.25.0",
