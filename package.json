@@ -23,6 +23,7 @@
         "@tanstack/react-form": "^1.12.4",
         "@tanstack/react-query": "^5.81.2",
         "axios": "^1.10.0",
+        "effect": "^3.16.12",
         "final-form-arrays": "^4.0.0",
         "nanostores": "^1.0.1",
         "react": "^19.1.0",
@@ -32,6 +33,8 @@
         "react-hook-form": "^7.59.0",
         "react-redux": "^9.2.0",
         "swr": "^2.3.3",
+        "valibot": "^1.1.0",
+        "yup": "^1.6.1",
         "zod": "^3.25.67"
     },
     "devDependencies": {

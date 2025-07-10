@@ -1,4 +1,4 @@
-# Forms and validation
+# Forms
 
 ## Forms API comparison
 
@@ -134,7 +134,7 @@ export const ArrayOfForms = () => {
         formState: { errors },
     } = useForm<FormValues>({
         defaultValues: {
-            items: [{ type: '', subType: '', id: '' }],
+            items: [{ type: '', subType: '', id: '',  }],
         },
         resolver: zodResolver(schema),
     })
@@ -399,9 +399,7 @@ const Input = () => {
 
 **TanStack Form** is an emerging option, especially if you use other TanStack tools.
 
-
 #### Resume
-
 
 1. Более изолированный (\*другой) подход
 2. Есть дебаунс
@@ -472,7 +470,7 @@ export const App = () => {
                 const helperText = state.meta.errors.map(err => err?.message).join('')
 
                 return (
-                    <TextField
+                    <form.TextField
                         error={error}
                         helperText={helperText}
                         label="Type"
@@ -486,7 +484,7 @@ export const App = () => {
                                 {opt.label}
                             </MenuItem>
                         ))}
-                    </TextField>
+                    </form.TextField>
                 )
             }}
         </form.AppField>
