@@ -25,13 +25,14 @@ const userShape = {
     price: number()
         .required()
         .when('type', {
-            is: 'a',
+            is: () => ...,
             then: schema => schema.min(1).max(10),
             otherwise: schema => schema.min(2).max(20),
         }),
 }
 
 const userFlatShape = {
+    field: number(),
     items: array().of(
         object({
             type: string<ItemType>().nullable(),

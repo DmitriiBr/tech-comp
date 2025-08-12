@@ -56,6 +56,8 @@ const fn = () => {
         z.object({ x: z.number().max(20), anotherField: z.string() }),
     ])
 
+    type T = z.infer<typeof res>
+
     console.log(
         '10: ',
         res.safeParse({

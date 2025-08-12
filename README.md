@@ -6,7 +6,6 @@
 - [ ] Стилизация
 - [ ] Тестирование
 - [ ] Сборка
-- [ ] Linting + formatting (Ссылка на atomazing)
 - [ ] \*Microfrontends
 
 ## New list
