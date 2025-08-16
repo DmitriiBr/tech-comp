@@ -1,0 +1,53 @@
+{
+    "name": "vitest-example",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc -b && vite build",
+        "lint": "eslint .",
+        "preview": "vite preview",
+        "test": "vitest",
+        "cy:open": "cypress open"
+    },
+    "dependencies": {
+        "@emotion/styled": "^11.14.1",
+        "@mui/material": "^7.3.1",
+        "@reatom/core": "1000.0.0-alpha.34",
+        "@reatom/react": "1000.0.0-alpha.32",
+        "react": "^19.1.1",
+        "react-dom": "^19.1.1"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.33.0",
+        "@testing-library/jest-dom": "^6.7.0",
+        "@testing-library/react": "^16.3.0",
+        "@testing-library/user-event": "^14.6.1",
+        "@types/react": "^19.1.10",
+        "@types/react-dom": "^19.1.7",
+        "@vitejs/plugin-react": "^5.0.0",
+        "cypress": "^14.5.4",
+        "eslint": "^9.33.0",
+        "eslint-plugin-react-hooks": "^5.2.0",
+        "eslint-plugin-react-refresh": "^0.4.20",
+        "global-jsdom": "^26.0.0",
+        "globals": "^16.3.0",
+        "jsdom": "^26.1.0",
+        "msw": "^2.10.5",
+        "prettier": "^3.6.2",
+        "ts-node": "^10.9.2",
+        "typescript": "~5.8.3",
+        "typescript-eslint": "^8.39.1",
+        "vite": "^7.1.2",
+        "vitest": "^3.2.4"
+    },
+    "prettier": {
+        "useTabs": false,
+        "tabWidth": 4,
+        "arrowParens": "avoid",
+        "semi": false,
+        "singleQuote": true,
+        "printWidth": 100
+    }
+}

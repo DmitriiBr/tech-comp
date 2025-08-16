@@ -3,9 +3,8 @@
 - [x] State manager + cache manager
 - [x] Формы
 - [x] Валидация
-- [ ] Стилизация
+- [x] Стилизация
 - [ ] Тестирование
-- [ ] Сборка
 - [ ] \*Microfrontends
 
 ## New list
