@@ -11,6 +11,8 @@ import {
 import { reatomComponent } from '@reatom/react'
 import { listResource } from './listResource'
 
+// const sleep = (time: number) => new Promise(r => setTimeout(r, time))
+
 export const PostsList = reatomComponent(() => {
     return (
         <Paper elevation={3} sx={{ maxWidth: 600, margin: '20px auto', padding: 2 }}>
@@ -24,7 +26,7 @@ export const PostsList = reatomComponent(() => {
 
             {!listResource.ready() && (
                 <Box display="flex" justifyContent="center" mt={4}>
-                    <CircularProgress role="progressbar" />
+                    <CircularProgress role="progressbar" className="progress" />
                 </Box>
             )}
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Button, Card, CardContent, Typography, Collapse } from '@mui/material'
 
 type Props = {

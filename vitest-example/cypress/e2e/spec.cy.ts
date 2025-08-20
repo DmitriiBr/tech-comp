@@ -29,9 +29,27 @@ describe('template spec', () => {
 
         // Request is ready here
         cy.get('[role="progressbar"]').should('not.exist')
+
+        cy.intercept('GET', 'https://jsonplaceholder.typicode.com/posts', req => {
+            req.reply({
+                statusCode: 200,
+                body: [
+                    {
+                        id: 1,
+                        title: 'Some title',
+                        body: 'text',
+                    },
+                ],
+                delay: 2000,
+            })
+        }).as('listResource')
+
         cy.get('[role="button"]').click()
 
-        // Seinding request again
+        // Sending request again
         cy.get('[role="progressbar"]').should('exist')
+
+        cy.wait('@listResource')
+        cy.get('[role="progressbar"]').should('not.exist')
     })
 })
