@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Import map Host</title>
+        <script async src="/assets/es-module-shims.js"></script>
+        <script type="importmap">
+            {
+                "imports": {
+                    "@example/micro": "http://localhost:3002/vite-module.es.mjs",
+                    "@example/webpack": "http://localhost:3001/webpack-module.js",
+                    "react": "https://esm.sh/react",
+                    "react-dom": "https://esm.sh/react-dom",
+                    "react/jsx-runtime": "https://esm.sh/react/jsx-runtime"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="module" src="/src/main.tsx"></script>
+    </body>
+</html>

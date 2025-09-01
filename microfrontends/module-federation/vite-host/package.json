@@ -4,7 +4,7 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "vite",
+        "dev": "serve dist -p 3000 -C",
         "build": "tsc -b && vite build",
         "lint": "eslint .",
         "preview": "vite preview"
@@ -12,7 +12,8 @@
     "dependencies": {
         "@module-federation/vite": "^1.7.1",
         "react": "^19.1.1",
-        "react-dom": "^19.1.1"
+        "react-dom": "^19.1.1",
+        "serve": "^14.2.4"
     },
     "devDependencies": {
         "@eslint/js": "^9.33.0",

@@ -70,6 +70,22 @@
         
     }
       const usedRemotes = [
+                {
+                  entryGlobalName: "vite_app",
+                  name: "vite_app",
+                  type: "module",
+                  entry: "http://localhost:3002/remoteEntry.js",
+                  shareScope: "default",
+                }
+          ,
+                {
+                  entryGlobalName: "webpack_app",
+                  name: "webpack_app",
+                  type: "var",
+                  entry: "http://localhost:3001/remoteEntry.js",
+                  shareScope: "default",
+                }
+          
       ]
       export {
         usedShared,
