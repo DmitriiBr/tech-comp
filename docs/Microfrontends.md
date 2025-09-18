@@ -1,40 +1,52 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Microfrontends
 
-Here's a table comparing Module Federation and its alternatives for microfrontend solutions based on popularity, framework agnosticness, downloads, and easiness of use:
+| Solution                                | Popularity                                            |
+| --------------------------------------- | ----------------------------------------------------- |
+| Module Federation (Webpack\Vite\Rspack) | Very popular, industry standard with strong adoption  |
+| Native Federation (esbuild)             | Growing, alternative to Module Federation for esbuild |
+| Single-SPA (runtime orchestration)      | Popular, widely used alternative to Module Federation |
+| Import Maps (native browser)            | Emerging, seen as a web-standard alternative          |
+| SystemJS (module loader)                | Less popular than Module Federation but stable        |
 
-| Solution                                | Popularity                                            | Framework Agnosticness                                                             | Downloads (NPM Weekly)                   | Easiness of Use                                                                                          |
-| --------------------------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| Module Federation (Webpack\Vite\Rspack) | Very popular, industry standard with strong adoption  | Mostly tied to Webpack but evolving to support other bundlers like Rspack and Vite | Very high, millions of downloads overall | Powerful but can be complex to configure; requires understanding of Webpack and runtime sharing concepts |
-| Native Federation (esbuild)             | Growing, alternative to Module Federation for esbuild | Framework agnostic, uses native ES modules and import maps                         | Moderate                                 | Easier setup than Webpack Module Federation, keeps modularity without webpack dependency                 |
-| Single-SPA (runtime orchestration)      | Popular, widely used alternative to Module Federation | Framework agnostic, supports multiple frameworks                                   | Moderate                                 | Easier to set up and use, good documentation, but less dynamic code sharing than Module Federation       |
-| Import Maps (native browser)            | Emerging, seen as a web-standard alternative          | True framework agnostic, browser native                                            | Low                                      | Very easy to use, but limited compared to full runtime code sharing and dependency resolution            |
-| SystemJS (module loader)                | Less popular than Module Federation but stable        | Framework agnostic, works with any JS                                              | Low to moderate                          | Flexible but more manual config and runtime complexity                                                   |
 
-## Технологии
 
-1. SystemJS
-2. importmaps
-3. native-federation
-4. single-spa
-5. module-federation
 
-## Разделение
 
-### Подгрузка модулей
 
-Возможно подгружать любой js код в свое приложение.
 
-1. SystemJS
-2. importmaps
 
-### Оркестрация микрофронтов на уровне сборщика
 
-Возможно подгружать любой js код в свое приложение.
-Поверх подгрузки есть возможно оркестрировать (регистрировать) приложения.
 
-1. native-federation
-2. single-spa
-3. module-federation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Кейс, выбранный для примера
 
@@ -67,6 +79,70 @@ const App = () => {
 
 export default App
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Технологии
+
+1. SystemJS
+2. importmaps
+3. native-federation
+4. single-spa
+5. module-federation
+
+## Разделение
+
+### Подгрузка модулей
+
+Возможно подгружать любой js код в свое приложение.
+
+1. SystemJS
+2. importmaps
+
+### Оркестрация микрофронтов на уровне сборщика
+
+Возможно подгружать любой js код в свое приложение.
+Поверх подгрузки есть возможно оркестрировать (регистрировать) приложения.
+
+1. native-federation
+2. single-spa
+3. module-federation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Native federation (FAIL)
 
@@ -194,6 +270,25 @@ export default App
 2. Очень старые примеры
 3. Актуальная либа развиваетсят в основном по экосистему Angular
 4. Документации практически нет
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## SysstemJS
 
@@ -348,6 +443,26 @@ module.exports = {
 2. Мало документации
 3. Официальные примеры 6ти летней давности
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Import Maps
 
 Маппинг адресов на нативные ES импорты.
@@ -494,7 +609,25 @@ export default defineConfig({
 
 1. Не кроссбраузерно
 2. Проблемы с зоопарком технологий становятся еще сложнее
-3. Прокидывание пропсов становится более слождным
+3. Прокидывание пропсов становится более сложным
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Single SPA
 
@@ -702,6 +835,26 @@ export default lifecycles
 2. Так себе с шарингом зависимостей
 3. Могут быть подводные камни в пробрасывании пропсов
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Module Federation
 
 1. Оркестрация
@@ -850,9 +1003,21 @@ module.exports = {
 2. Популярность и активное комьюнити
 3. Очень много примеров
 4. Удобная оркестрация микрофронтов
+5. Множественный exposes
 
 ### Минусы
 
-1. Конфиг для хоста создается во время компиляции
-2. Так себе с шарингом зависимостей
-3. Сложно с зоопарком технологий
+1. Так себе с шарингом зависимостей
+2. Сложно с зоопарком технологий
+3. Docs
+
+
+const PATHS = {
+	SERVICE: {
+		BY_ID: 'service/entities/:id',
+		ENTITIES: {
+			FIRST: 'service/entities/:id/first',
+			SECOND: 'service/entities/:id/second',
+		}
+	}
+}
