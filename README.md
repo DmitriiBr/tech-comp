@@ -4,6 +4,8 @@
 
 Статья - результат цикла встреч, где обсуждались и выбирались технологий для использования в фронтенд приложении. Она содержит набор выводов и рекомендаций по тому или иному аспекту разработки. В конце сопоставляется старый и новый стек, делается вывод, на основе которого можно принять решение о переходе на другие решения.
 
+Оригинал сравнений и все примеры кода расположены в репозитории: https://github.com/DmitriiBr/tech-comp
+
 ## Управление состоянием
 
 _Как ни странно, здесь всё очень не просто._
@@ -176,7 +178,163 @@ const Cmop = reactomComponent(() => (
 
 ## Формы
 
+С библиотеками форм - выбор не очень большой. Существует 2 хороших и популярных решения:
+
+1. React hook form;
+2. Tanstack form;
+
+При сравнении показалось, что единственным отличием является интерфейс взаимодествия с АПИ библиотеки.
+В react-hook-form - подход, основанный по большей части на хуках. А в tanstack-form - на компонентах.
+
+Пример:
+
+```tsx
+// react-hook-form
+const Input = ({ name }) => {
+    const { field, fieldState } = useController({
+        name,
+    })
+
+    return (
+        <TextField
+            {...field}
+            label="ID"
+            fullWidth
+            error={fieldState.invalid}
+            helperText={fieldState.error?.message}
+        />
+    )
+}
+
+// tanstack form
+const Input = () => {
+    return (
+        <Field name="subType">
+            {({ input, meta }) => (
+                <TextField
+                    {...input}
+                    select
+                    label="SubType"
+                    fullWidth
+                    disabled={!values.type}
+                    error={meta.touched && !!meta.error}
+                    helperText={meta.touched && meta.error}
+                >
+                    {subTypeOptions.map(opt => (
+                        <MenuItem key={opt.value} value={opt.value}>
+                            {opt.label}
+                        </MenuItem>
+                    ))}
+                </TextField>
+            )}
+        </Field>
+    )
+}
+```
+
+Быстрое сравнение разных библиотек форм есть на официальном сайте Tansktack: https://tanstack.com/form/latest/docs/comparison
+
+### React hook form
+
+На данный момент лучшее решение, по нашему мнению. Из минусов только отсутствие поддержки SSR.
+
+1. Удобный интерфейс;
+2. Гибкая настройка;
+3. Оптимизация;
+
+### Tanstack form
+
+Уступает react-hook-form по удобству и популярности. Единственный плюсь - поддержка SSR.
+
+1. Гибкая настройка;
+2. Поддержка SSR;
+
 ## Валидация
+
+В сравнении учавствовали 3 библиотеки:
+
+1. Yup - текущее решение;
+2. Zod - самое популярное, почти стандарт индустрии;
+3. Valibot - самая минималистичная библиотека валидации;
+
+### Yup
+
+В новый проект не стоит брать никогда, по причинам:
+
+1. Оптимизация. По сравнению с 2мя другими вариантами - медленнее;
+2. Поддержка typescript. Хуже, так как изначально библиотека разрабатывалась без него;
+3. Возможность "мутации" схем валидации. То есть, при любое условие в схеме происходи НЕ через описание кейсов схемы, а через мутацию её самой. См. пример ниже.
+
+```typescript
+// shema mutation
+const a = string()
+    .min(10)
+    .required()
+    .when({
+        is: val => val === 'STR',
+        then: schema => schema.min(20),
+        otherwise: () => number().min(10),
+    })
+
+a // -> type ??
+```
+
+### Zod
+
+Наш выбор остановился на Zod.
+Стоит брать всегда в новый проект, хотя бы потому, что это самое популярное ршение и поддерживается множеством сторонних библиотек из коробки.
+
+**Плюсы:**
+
+1. Typescript first;
+2. Популярность, очень и очень много примеров;
+3. Скорость по сравнению с yup;
+
+Пример такой же `yup` схемы, но на Zod:
+
+```typescript
+const a = z.union([z.string(), z.number()]).refine(val => {
+    if (typeof val === 'string') {
+        if (val === 'STR') {
+            return val.length >= 20
+        }
+        return val.length >= 10
+    } else if (typeof val === 'number') {
+        return val >= 10
+    }
+    return false
+})
+
+a // -> type is string | number, because of union
+```
+
+### Valibot
+
+Минималистичная библиотека, по философии схожая с Zod. Отличается только размером и подходом к составлению схем.
+
+```typescript
+// Zod
+import z from 'zod'
+
+const a = z.string().max(10)
+const b = z.number().min(20)
+
+// Valibot
+
+import { string, pipe, maxLength, minValue } from 'valibot'
+
+const a = pipe(string(), maxLength(10))
+const b = pipe(number(), minValue(20))
+```
+
+То есть, АПИ не "вырастает" из единого источника как в Zod или Yup. Вместо этого библиотека предоставляет атомарные обработчики (они называются action'ами), которые пользователь может по своему желению соединить и получить схемы для вылидации.
+
+Плюсы:
+
+1. Typescript first;
+2. Скорость по сравнению с yup;
+
+Однако, из-за непривычности АПИ и меньшей популярности, выбор остановился на Zod.
 
 ## Стилизация
 
