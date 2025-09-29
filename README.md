@@ -372,4 +372,99 @@ const b = pipe(number(), minValue(20))
 
 ## Тестирование
 
+В рамках темы тестирования рассмытривались библиотеки:
+
+1. Unit тестирование
+
+1.1. Jest
+1.2. Vitest
+
+2. E2E тестирование
+
+2.1. Cypress
+2.2. Playwright
+
+### Unit тестирование
+
+Тут всё довольно просто:
+
+1. Vitest быстрее;
+2. Vitest новее;
+3. Vitest достаточно популярен, чтобы поддерживать нужные плагины и дополнения;
+
+В остальном, Vitest обратно совместим с Jest с точки зрения АПИ:
+
+```typescript
+// Jest and Vitest are the same
+describe('test', () => {
+    it('Should be correct', () => {
+        expect(treu).toBe(false)
+    })
+})
+```
+
+Вывод, если есть возможность выбирать, то можно и нужно брыть Vitest как решение для Unit тестирования.
+Несполько статей подробным сравнением:
+
+- Vitest vs Jest | Better Stack Community  
+  https://betterstack.com/community/guides/scaling-nodejs/vitest-vs-jest/
+
+- Vitest: Переход на Vitest с Jest - Semaphore CI  
+  https://semaphore.io/blog/vitest
+
+- Почему Vite может быть лучше для ваших JevaScript проектов (Divotion)  
+  https://www.divotion.com/blog/why-vitest-might-be-better-than-jest-for-your-javascript-projects
+
+- Vitest vs Jest - (Очень наглядное сравнение с точки зрения фич)
+  https://www.speakeasy.com/blog/vitest-vs-jest
+
+### E2E тестирование
+
+Тут немного сложнее. Сравнивались два решения: **Cypress** и **Playwright**. Они оба обладают похожим функционалом, UI режим, Headless (без UI) режим, но, как обычно, есть решающие нюанса, которые в конечном итоге влияют на выбор.
+
+1. Playwright умеет в параллельный запуск (без подписки), в отличии от Cypress. А для долгих E2E это довольно важно;
+2. У Playwright АПИ (См. ниже примеры) очень похоже на Jest\Vitest. У Cypress АПИ слишком "нестандартное";
+3. У Cypress даже при первичном рассмотрении прослеживается разграничение на платный\бесплатный вариант использования;
+4. Playwright поддерживает все браузеры, Cypress только Chromium и Firefox;
+
+Учитывая всё это, выбор остановился на **Playwright**.
+
+**Примеры АПИ:**
+
+```typescript
+// Cypress
+describe('template spec', () => {
+    it('Should show loader, and then remove it after response is ready ', () => {
+        cy.contains('Posts List').should('exist')
+        cy.get('[role="progressbar"]').should('exist')
+
+        // Request is ready here
+        cy.get('[role="progressbar"]').should('not.exist')
+    })
+})
+
+// Playwright
+test('Should show loader, and then remove it after response is ready', async ({ page }) => {
+    await page.goto('http://localhost:5173')
+
+    await expect(page.getByRole('progressbar')).toBeInViewport()
+    await page.getByRole('progressbar').waitFor({ state: 'hidden' })
+    await expect(page.getByRole('progressbar')).not.toBeInViewport()
+})
+```
+
+Полезные статьи, по аналогии с Jest\Vitest:
+
+- Playwright vs Cypress: Ключевые отличия (LambdaTest)  
+  https://www.lambdatest.com/blog/cypress-vs-playwright/
+
+- Cypress vs Playwright - Общее сравнение на 2025 (BugBug.io)  
+  https://bugbug.io/blog/test-automation-tools/cypress-vs-playwright/
+
+- Playwright vs Cypress: Основные отличия на 2025 (Katalon)  
+  https://katalon.com/resources-center/blog/playwright-vs-cypress
+
+- Playwright vs. Cypress - сравнение E2E фреймворков (Gorzelinski)  
+  https://gorzelinski.com/blog/playwright-vs-cypress-comparison-of-e2e-testing-frameworks/
+
 ## Реализация микрофронтов
