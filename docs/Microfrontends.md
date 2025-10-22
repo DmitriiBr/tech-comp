@@ -1,17 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Microfrontends
 
 | Solution                                | Popularity                                            |
@@ -21,32 +7,6 @@
 | Single-SPA (runtime orchestration)      | Popular, widely used alternative to Module Federation |
 | Import Maps (native browser)            | Emerging, seen as a web-standard alternative          |
 | SystemJS (module loader)                | Less popular than Module Federation but stable        |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## Кейс, выбранный для примера
 
@@ -80,23 +40,6 @@ const App = () => {
 export default App
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Технологии
 
 1. SystemJS
@@ -122,27 +65,6 @@ export default App
 1. native-federation
 2. single-spa
 3. module-federation
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## Native federation (FAIL)
 
@@ -270,25 +192,6 @@ export default App
 2. Очень старые примеры
 3. Актуальная либа развиваетсят в основном по экосистему Angular
 4. Документации практически нет
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## SysstemJS
 
@@ -443,26 +346,6 @@ module.exports = {
 2. Мало документации
 3. Официальные примеры 6ти летней давности
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Import Maps
 
 Маппинг адресов на нативные ES импорты.
@@ -610,24 +493,6 @@ export default defineConfig({
 1. Не кроссбраузерно
 2. Проблемы с зоопарком технологий становятся еще сложнее
 3. Прокидывание пропсов становится более сложным
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## Single SPA
 
@@ -835,26 +700,6 @@ export default lifecycles
 2. Так себе с шарингом зависимостей
 3. Могут быть подводные камни в пробрасывании пропсов
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Module Federation
 
 1. Оркестрация
@@ -1010,14 +855,3 @@ module.exports = {
 1. Так себе с шарингом зависимостей
 2. Сложно с зоопарком технологий
 3. Docs
-
-
-const PATHS = {
-	SERVICE: {
-		BY_ID: 'service/entities/:id',
-		ENTITIES: {
-			FIRST: 'service/entities/:id/first',
-			SECOND: 'service/entities/:id/second',
-		}
-	}
-}
