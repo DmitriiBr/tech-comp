@@ -634,6 +634,4 @@ export default App
 
 ## Результаты тех-радара
 
-![Result](и нужны конкретные исправленные части с выделением ошибок, могу также указать. Но весь текст с исправленными орфографиями и сохранением кода приведён выше.
-
-[1](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/73910956/b0775ed0-79d2-4509-af2a-32b0b4baf4fe/README.md)
+![Tech comp results image](./assets/tech-comp-result.png)
